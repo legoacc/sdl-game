@@ -163,7 +163,6 @@ int main( int argc, char* args[] )
             
             blastanim.getFromArray(blast, "blast", 23);
             blastanim.betweenFrameCount = 3;
-            bool blow = false;
             
             Enemy enemy_o;
             Enemy enemy_2;
