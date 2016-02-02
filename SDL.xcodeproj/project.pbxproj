@@ -15,6 +15,7 @@
 		49A8A8881C5FC6B7004BD72A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A8A87E1C5FC6B7004BD72A /* main.cpp */; };
 		49A8A8891C5FC6B7004BD72A /* ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A8A87F1C5FC6B7004BD72A /* ship.cpp */; };
 		49A8A88A1C5FC6B7004BD72A /* bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A8A8811C5FC6B7004BD72A /* bullet.cpp */; };
+		49A8A88D1C5FD2FA004BD72A /* enemymanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A8A88B1C5FD2FA004BD72A /* enemymanager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +76,8 @@
 		49A8A8811C5FC6B7004BD72A /* bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bullet.cpp; sourceTree = "<group>"; };
 		49A8A8821C5FC6B7004BD72A /* bullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bullet.hpp; sourceTree = "<group>"; };
 		49A8A8831C5FC6B7004BD72A /* base.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = base.hpp; sourceTree = "<group>"; };
+		49A8A88B1C5FD2FA004BD72A /* enemymanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enemymanager.cpp; sourceTree = "<group>"; };
+		49A8A88C1C5FD2FA004BD72A /* enemymanager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = enemymanager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,16 +145,18 @@
 			isa = PBXGroup;
 			children = (
 				49A8A8791C5FC6B7004BD72A /* anim.cpp */,
-				49A8A87A1C5FC6B7004BD72A /* anim.hpp */,
 				49A8A87B1C5FC6B7004BD72A /* base.cpp */,
+				49A8A8811C5FC6B7004BD72A /* bullet.cpp */,
 				49A8A87C1C5FC6B7004BD72A /* enemy.cpp */,
-				49A8A87D1C5FC6B7004BD72A /* enemy.hpp */,
+				49A8A88B1C5FD2FA004BD72A /* enemymanager.cpp */,
 				49A8A87E1C5FC6B7004BD72A /* main.cpp */,
 				49A8A87F1C5FC6B7004BD72A /* ship.cpp */,
-				49A8A8801C5FC6B7004BD72A /* ship.hpp */,
-				49A8A8811C5FC6B7004BD72A /* bullet.cpp */,
-				49A8A8821C5FC6B7004BD72A /* bullet.hpp */,
+				49A8A87A1C5FC6B7004BD72A /* anim.hpp */,
 				49A8A8831C5FC6B7004BD72A /* base.hpp */,
+				49A8A8821C5FC6B7004BD72A /* bullet.hpp */,
+				49A8A87D1C5FC6B7004BD72A /* enemy.hpp */,
+				49A8A88C1C5FD2FA004BD72A /* enemymanager.hpp */,
+				49A8A8801C5FC6B7004BD72A /* ship.hpp */,
 			);
 			path = SDL;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A8A8861C5FC6B7004BD72A /* base.cpp in Sources */,
+				49A8A88D1C5FD2FA004BD72A /* enemymanager.cpp in Sources */,
 				49A8A88A1C5FC6B7004BD72A /* bullet.cpp in Sources */,
 				49A8A8851C5FC6B7004BD72A /* anim.cpp in Sources */,
 				49A8A8881C5FC6B7004BD72A /* main.cpp in Sources */,

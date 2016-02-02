@@ -9,6 +9,7 @@
 #include "enemy.hpp"
 #include "bullet.hpp"
 #include "anim.hpp"
+#include "enemymanager.hpp"
 
 using namespace std;
 
@@ -59,7 +60,7 @@ bool init()
         }
         
         //Create window
-        gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        gWindow = SDL_CreateWindow( "Space Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if( gWindow == NULL )
         {
             printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -114,6 +115,10 @@ bool loadMedia()
         blast[i].loadFromFile("blast"+to_string(i)+".png");
     }
     
+    //Set up animations
+    blastanim.getFromArray(blast, "blast", 23);
+    blastanim.betweenFrameCount = 3;
+    
     
     return success;
 }
@@ -125,6 +130,16 @@ void close()
         ship[i].free();
     }
     
+    enemy.free();
+    
+    for (int i=0;i<sizeof(bullet)/sizeof(bullet[0]);i++) {
+        bullet[i].free();
+    }
+    
+    for (int i=0;i<23;i++) {
+        blast[i].free();
+    }
+    
     //Destroy window
     SDL_DestroyRenderer( gRenderer );
     SDL_DestroyWindow( gWindow );
@@ -134,6 +149,14 @@ void close()
     //Quit SDL subsystems
     IMG_Quit();
     SDL_Quit();
+}
+
+void beforeStartGame() {
+    
+}
+
+void startGame() {
+    
 }
 
 int main( int argc, char* args[] )
@@ -161,13 +184,8 @@ int main( int argc, char* args[] )
             //The dot that will be moving around on the screen
             Ship ship;
             
-            blastanim.getFromArray(blast, "blast", 23);
-            blastanim.betweenFrameCount = 3;
-            
-            Enemy enemy_o;
-            Enemy enemy_2;
-            enemy_2.mPosX = 400;
-            enemy_2.mPosY = 20;
+            EnemyManager::createEnemy (400, 20);
+            EnemyManager::createEnemy (SCREEN_WIDTH/3, SCREEN_HEIGHT/2);
             
             bool alive2 = true;
             
@@ -190,24 +208,11 @@ int main( int argc, char* args[] )
                 
                 //Move the dot
                 ship.move();
-                enemy_o.moveTowards(ship.mPosX, ship.mPosY);
-                
-                enemy_2.moveTowards(ship.mPosX, ship.mPosY);
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 50, 50, 50, 255 );
                 SDL_RenderClear( gRenderer );
-                //Render objects
-                if (!ship.alive(enemy_o.bullets)) {
-                    alive2=false;;
-                }
-                
-                enemy_o.render(ship.bullets);
-                enemy_2.render(ship.bullets);
-                std::vector<Bullet> enemybullets;
-                enemybullets.reserve(enemy_o.bullets.size()+enemy_2.bullets.size());
-                enemybullets.insert(enemybullets.end(), enemy_o.bullets.begin(), enemy_o.bullets.end());
-                enemybullets.insert(enemybullets.end(), enemy_2.bullets.begin(), enemy_2.bullets.end());
-                ship.render(enemybullets);
+                EnemyManager::renderEnemies(ship.mPosX, ship.mPosY, ship.bullets);
+                ship.render(EnemyManager::allbullets);
                 AnimationManager::playFrames();
                 
                 //Update screen
