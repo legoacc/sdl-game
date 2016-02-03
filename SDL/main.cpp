@@ -33,6 +33,7 @@ void close();
 //Scene textures
 LTexture bullet [2];
 LTexture enemy;
+LTexture bomber;
 LTexture ship [4];
 LTexture blast[23];
 string files [4] = {"ship64", "ship64move0", "ship64move1", "ship64move2"};
@@ -111,6 +112,7 @@ bool loadMedia()
     
     //Load other textures
     enemy.loadFromFile("enemy.png");
+    bomber.loadFromFile("bomber.png");
     for (int i=0;i<23;i++) {
         blast[i].loadFromFile("blast"+to_string(i)+".png");
     }
@@ -184,8 +186,9 @@ int main( int argc, char* args[] )
             //The dot that will be moving around on the screen
             Ship ship;
             
-            EnemyManager::createEnemy (400, 20);
-            EnemyManager::createEnemy (SCREEN_WIDTH/3, SCREEN_HEIGHT/2);
+            //EnemyManager::createEnemy (normenemy, 400, 20);
+            EnemyManager::createEnemy (normbomber, SCREEN_WIDTH/3, SCREEN_HEIGHT/2);
+            //EnemyManager::createEnemy (normenemy, 800, 20);
             
             bool alive2 = true;
             
@@ -211,7 +214,7 @@ int main( int argc, char* args[] )
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 50, 50, 50, 255 );
                 SDL_RenderClear( gRenderer );
-                EnemyManager::renderEnemies(ship.mPosX, ship.mPosY, ship.bullets);
+                EnemyManager::renderEnemies(ship.mPosX, ship.mPosY, ship.bullets, ship.customdeath);
                 ship.render(EnemyManager::allbullets);
                 AnimationManager::playFrames();
                 

@@ -170,9 +170,10 @@ void Ship::render(std::vector<Bullet> enemybullets) {
         moveBullets();
         fire();
     }
-    else if (status) {
+    else if (status || customdeath) {
         AnimationManager::addAnimation(mPosX, mPosY, blastanim);
         status = false;
+        customdeath = false;
         moveBullets();
     }
     else {

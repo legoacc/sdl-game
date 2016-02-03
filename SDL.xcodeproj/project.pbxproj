@@ -16,6 +16,7 @@
 		49A8A8891C5FC6B7004BD72A /* ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A8A87F1C5FC6B7004BD72A /* ship.cpp */; };
 		49A8A88A1C5FC6B7004BD72A /* bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A8A8811C5FC6B7004BD72A /* bullet.cpp */; };
 		49A8A88D1C5FD2FA004BD72A /* enemymanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A8A88B1C5FD2FA004BD72A /* enemymanager.cpp */; };
+		49A8A8991C627F7C004BD72A /* bomber.png in Copy Files (1 item) */ = {isa = PBXBuildFile; fileRef = 49A8A8981C627F30004BD72A /* bomber.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				49A8A8991C627F7C004BD72A /* bomber.png in Copy Files (1 item) */,
 			);
 			name = "Copy Files (1 item)";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +80,7 @@
 		49A8A8831C5FC6B7004BD72A /* base.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = base.hpp; sourceTree = "<group>"; };
 		49A8A88B1C5FD2FA004BD72A /* enemymanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enemymanager.cpp; sourceTree = "<group>"; };
 		49A8A88C1C5FD2FA004BD72A /* enemymanager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = enemymanager.hpp; sourceTree = "<group>"; };
+		49A8A8981C627F30004BD72A /* bomber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomber.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 				499A7E0B1C5D468E00E8BECF /* ship64move0.png */,
 				499A7E0C1C5D468E00E8BECF /* ship64move1.png */,
 				499A7E0D1C5D468E00E8BECF /* ship64move2.png */,
+				49A8A8981C627F30004BD72A /* bomber.png */,
 				493A60C81C4FC9F4001D189F /* SDL2_image.framework */,
 				493A60C31C4FBE04001D189F /* SDL2.framework */,
 				493A60BB1C4FBDE2001D189F /* SDL */,

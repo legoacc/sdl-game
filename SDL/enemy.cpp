@@ -24,7 +24,7 @@ Enemy::Enemy() {
 
 
 
-void Enemy::moveTowards(int x, int y) {
+void Enemy::moveTowardswithRotation(int x, int y) {
     
     double targetAngleRad = atan2(y - mPosY, x - mPosX);
     double targetAngle = targetAngleRad * 180 / M_PI;
@@ -65,6 +65,49 @@ void Enemy::moveTowards(int x, int y) {
     
 }
 
+void Enemy::moveTowards(int x, int y) {
+    
+    
+    double velAngleRad = atan2(y - mPosY, x - mPosX);
+    velAngle = velAngleRad * 180 / M_PI;
+    
+    //MOVE
+    
+    if (mPosX != x && mPosY != y) {
+        absVel += SPEED;
+    }
+    
+    mVelX = cos(velAngle* M_PI/180) * absVel;
+    mVelY = sin(velAngle*M_PI/180) * absVel;
+    
+    mPosX += mVelX;
+    mPosY += mVelY;
+    
+    
+    if( ( mPosY < 0 ) || ( mPosY + ENEMY_HEIGHT > SCREEN_HEIGHT ) )
+    {
+        //Move back
+        mPosY -= mVelY;
+        absVel = -absVel*0.5;
+    }
+    
+    if( ( mPosX < 0 ) || ( mPosX + ENEMY_WIDTH > SCREEN_WIDTH ) )
+    {
+        //Move back
+        mPosX -= mVelX;
+        absVel = -absVel*0.5;
+    }
+    
+    absVel -=SPEED;
+    
+    //EXPLODE
+    
+    if (mPosY < y+64 && mPosY > y - 64 && mPosX < x+64 && mPosX > x - 64) {
+        customdeath = true;
+    }
+    
+}
+
 
 
 void Enemy::fire() {
@@ -93,19 +136,37 @@ void Enemy::moveBullets() {
 
 
 
-void Enemy::render(std::vector<Bullet> enemybullets) {
-    if (alive(enemybullets) && status) {
-    enemy.render( mPosX, mPosY, NULL, velAngle, NULL);
-    moveBullets();
-    fire();
+void Enemy::render(std::vector<Bullet> enemybullets, int x, int y, bool cd) {
+    if (type == normenemy) moveTowardswithRotation(x, y);
+    if (type == normbomber && status) moveTowards(x, y);
+    
+    
+    if (type == normenemy) {
+        if (alive(enemybullets) && status) {
+            texture.render( mPosX, mPosY, NULL, velAngle, NULL);
+            moveBullets();
+            fire();
+        }
+        else if (status) {
+            AnimationManager::addAnimation(mPosX, mPosY, blastanim);
+            status = false;
+            moveBullets();
+        }
+        else {
+            moveBullets();
+        }
     }
-    else if (status) {
-        AnimationManager::addAnimation(mPosX, mPosY, blastanim);
-        status = false;
-        moveBullets();
-    }
-    else {
-        moveBullets();
+    
+    if (type == normbomber) {
+        if (alive(enemybullets) && status) {
+            texture.render( mPosX, mPosY, NULL, velAngle, NULL);
+        }
+        else if (status || customdeath) {
+            AnimationManager::addAnimation(mPosX, mPosY, blastanim);
+            cd = true;
+            status = false;
+            customdeath = false;
+        }
     }
     
 }

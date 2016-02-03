@@ -14,7 +14,7 @@
 #include "bullet.hpp"
 #include <vector>
 
-enum EnemyType { normenemy, bomber };
+
 
 class EnemyManager {
     
@@ -24,7 +24,7 @@ public:
     //USE
     static void createEnemy (EnemyType en, int x, int y);
     
-    static void renderEnemies(int x, int y, std::vector<Bullet> enemybullets);
+    static void renderEnemies(int x, int y, std::vector<Bullet> enemybullets, bool cd);
     
     static std::vector<Bullet> allbullets;
     

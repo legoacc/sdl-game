@@ -16,7 +16,10 @@
 #include <math.h>
 #include "anim.hpp"
 
+enum EnemyType { normenemy, normbomber };
+
 extern LTexture enemy;
+extern LTexture bomber;
 
 class Enemy {
   
@@ -26,7 +29,7 @@ public:
     //Constants
     static const int FIRING_ANGLE = 45;
     
-    static const int SPEED = 5;
+    int SPEED = 5;
     
     static const int FIRING_DELAY = 15;
     
@@ -49,9 +52,11 @@ public:
     std::vector<Bullet> bullets;
     
     //Functions
-    void render(std::vector<Bullet> enemybullets);
+    void render(std::vector<Bullet> enemybullets, int x, int y, bool cd);
     
-    void moveTowards(int x, int y);
+    void moveTowardswithRotation(int x, int y);
+    
+    void moveTowards (int x, int y);
     
     void fire();
     
@@ -60,6 +65,14 @@ public:
     bool alive (std::vector<Bullet> enemybullets);
     
     bool status = true;
+    
+    bool customdeath = false;
+    
+    EnemyType type;
+    
+    LTexture texture;
+    
+    
 };
 
 #endif /* enemy_hpp */

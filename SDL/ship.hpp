@@ -61,6 +61,8 @@ public:
     int mPosX, mPosY;
     double ANGLE_CHANGE_VEL;
     
+    bool customdeath = false;
+    
     int state = 0;
     int state1count = 0;
     
